@@ -12,3 +12,9 @@ distro/downloads
 .idea/workspace.xml
 .idea/libraries/*
 .idea/artifacts/*
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings
