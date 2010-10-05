@@ -5,6 +5,7 @@
 	<name>Activiti - Spring</name>
 	<groupId>org.activiti</groupId>
 	<artifactId>activiti-spring</artifactId>
+    <packaging>bundle</packaging>
 
 	<parent>
 		<groupId>org.activiti</groupId>
@@ -66,6 +67,10 @@
       <scope>test</scope>
     </dependency>
 	</dependencies>
+
+    <properties>
+        <activiti.artifact>org.activiti.spring</activiti.artifact>
+    </properties>
 
 	<!-- build>
 		<plugins>

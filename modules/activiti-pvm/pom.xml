@@ -6,6 +6,7 @@
   <name>Activiti - PVM</name>
   <groupId>org.activiti</groupId>
   <artifactId>activiti-pvm</artifactId>
+  <packaging>bundle</packaging>
 
   <parent>
     <groupId>org.activiti</groupId>
@@ -21,6 +22,13 @@
       <scope>provided</scope>
     </dependency>
   </dependencies>
+
+  <properties>
+      <activiti.artifact>org.activiti.pvm</activiti.artifact>
+      <activiti.osgi.import.additional>
+          junit*;resolution:=optional
+      </activiti.osgi.import.additional>
+  </properties>
   
   <profiles>
     <profile>
