@@ -131,8 +131,10 @@ public class DbSqlSessionFactory implements SessionFactory, ProcessEngineConfigu
   }
 
   protected SqlSessionFactory createSessionFactory(DataSource dataSource, TransactionFactory transactionFactory) {
+    ClassLoader previousClassLoader = Thread.currentThread().getContextClassLoader();
     try {
-      ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+      ClassLoader classLoader = getClass().getClassLoader();
+      Thread.currentThread().setContextClassLoader(classLoader);
       InputStream inputStream = classLoader.getResourceAsStream("org/activiti/db/ibatis/activiti.ibatis.mem.conf.xml");
 
       // update the jdbc parameters to the configured ones...
@@ -148,6 +150,8 @@ public class DbSqlSessionFactory implements SessionFactory, ProcessEngineConfigu
 
     } catch (Exception e) {
       throw new ActivitiException("Error while building ibatis SqlSessionFactory: " + e.getMessage(), e);
+    } finally {
+      Thread.currentThread().setContextClassLoader(previousClassLoader);
     }
   }
 
