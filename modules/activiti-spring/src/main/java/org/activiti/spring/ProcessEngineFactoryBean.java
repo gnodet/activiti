@@ -106,7 +106,9 @@ public class ProcessEngineFactoryBean implements FactoryBean<ProcessEngine>, Dis
   }
 
   protected void initializeExpressionManager() {
-    processEngineConfiguration.setExpressionManager(new SpringExpressionManager(applicationContext));
+    if (applicationContext != null) {
+      processEngineConfiguration.setExpressionManager(new SpringExpressionManager(applicationContext));
+    }
   }
   
   public Class< ? > getObjectType() {
