@@ -267,6 +267,9 @@ public class DbSqlSessionFactory implements SessionFactory, ProcessEngineConfigu
       String resource = "org/activiti/db/" + operation + "/activiti." + databaseName + "." + operation + ".sql";
       InputStream inputStream = classLoader.getResourceAsStream(resource);
       if (inputStream == null) {
+        inputStream = DbSqlSessionFactory.class.getClassLoader().getResourceAsStream(resource);
+      }
+      if (inputStream == null) {
         throw new ActivitiException("resource '" + resource + "' is not available for creating the schema");
       }
 

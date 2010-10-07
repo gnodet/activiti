@@ -115,7 +115,11 @@ public class Parse extends DefaultHandler {
       if (schemaResource != null) {
         
         SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        Schema schema = factory.newSchema(Thread.currentThread().getContextClassLoader().getResource(schemaResource));
+        URL resource = Thread.currentThread().getContextClassLoader().getResource(schemaResource);
+        if (resource == null) {
+          resource = getClass().getClassLoader().getResource(schemaResource);
+        }
+        Schema schema = factory.newSchema(resource);
         parser.getSaxParserFactory().setSchema(schema);
         
         Validator validator = schema.newValidator();
